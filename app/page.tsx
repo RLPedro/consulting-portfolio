@@ -1,5 +1,5 @@
-// import { Analytics } from "@vercel/analytics/next"
-// import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 "use client";
 
 import Image from 'next/image';
@@ -43,6 +43,8 @@ export default function Home() {
 
   return (
     <div>
+      <Analytics />
+      <SpeedInsights />
       {/* Hero Section */}
       <section className="hero section" id="home">
         <div className="brand-name">Your Brand</div>
