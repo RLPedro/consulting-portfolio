@@ -1,231 +1,176 @@
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+// Bruma Consultancy Website — Dark-Golden Palette + Full-Screen Hero with Fading Gothenburg Background + Mobile Drawer + Smooth Scrolling
+// Next.js 13 App Router + Tailwind v3 + Framer Motion + Unsplash placeholder
+
+
 "use client";
 
-import Image from 'next/image';
+
 import { useState } from 'react';
-import emailjs from '@emailjs/browser';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
-export default function Home() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState('');
 
-  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    e.preventDefault();
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+const services = [
+{ title: 'Digital Strategy', desc: 'Guiding your team through discovery, roadmapping, and growth strategy.', stack: 'Workshops • Market Fit • Roadmaps' },
+{ title: 'Product Design', desc: 'Designing interfaces and experiences that connect with your users.', stack: 'UI/UX • Design Systems • Figma' },
+{ title: 'Engineering', desc: 'Building robust applications across web and mobile platforms.', stack: 'React • TypeScript • Node.js' },
+{ title: 'Scaling & Optimization', desc: 'Optimizing performance, infrastructure, and pipelines for growth.', stack: 'Cloud • DevOps • Observability' },
+];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '';
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '';
+const projects = [
+{ title: 'Enterprise Web Strategy', tag: 'Digital Roadmap', year: 2025, href: '#', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d' },
+{ title: 'Product Design Sprint', tag: 'UX/UI Design', year: 2025, href: '#', img: 'https://images.unsplash.com/photo-1595142545813-06fee27f3dcb' },
+{ title: 'SaaS Engineering Platform', tag: 'Full-stack Build', year: 2025, href: '#', img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c' },
+{ title: 'Scaling Global Systems', tag: 'Cloud Architecture', year: 2025, href: '#', img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d' },
+];
 
-    e.preventDefault();
-    emailjs.send(serviceId, templateId, {
-      from_name: formData.name,
-      from_email: formData.email,
-      message: formData.message,
-    }, publicKey)
-      .then((result) => {
-        setStatus('Message sent successfully!');
-        setFormData({ name: '', email: '', message: '' });
-      }, (error) => {
-        setStatus('Failed to send message. Please try again.');
-      });
-  };
+export default function Page() {
+const [menuOpen, setMenuOpen] = useState(false);
 
-  return (
-    <div>
-      <Analytics />
-      <SpeedInsights />
-      {/* Hero Section */}
-      <section className="hero section" id="home">
-        <div className="brand-name">Your Brand</div>
-        <h1>Your Consultancy</h1>
-        <p>Driving digital innovation for your success</p>
-        <p>Transforming industries with cutting-edge solutions</p>
-        <a href="#services" className="btn" onClick={(e) => handleScrollToSection(e, 'services')}>Explore Services</a>
-      </section>
 
-      {/* Industries Section */}
-      <section className="section" id="industries">
-        <h2>Industries We Work With</h2>
-        <div className="cards-grid">
-          <div className="card">
-            <Image src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Recycling" width={60} height={60} />
-            <h3>Recycling</h3>
-            <ul>
-              <li>Expertise in legislation, transactions, and yard operations</li>
-              <li>Digital transformation with portals and B2B apps</li>
-              <li>New opportunities and enhanced efficiency</li>
-            </ul>
-          </div>
-          <div className="card">
-            <Image src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="B2B" width={60} height={60} />
-            <h3>B2B Industries</h3>
-            <ul>
-              <li>Designing digital platforms and e-commerce systems</li>
-              <li>Expertise in system architecture</li>
-              <li>New revenue through digitalization</li>
-            </ul>
-          </div>
-          <div className="card">
-            <Image src="https://images.unsplash.com/photo-1600585154739-6a8e7f0c8e3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Automotive" width={60} height={60} />
-            <h3>Automotive</h3>
-            <ul>
-              <li>Bridging technology and strategy</li>
-              <li>Insights from industry shifts</li>
-              <li>Proven change program success</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+return (
+  <div className="flex flex-col min-h-screen bg-bruma-dark text-gray-200 relative">
+    <Analytics />
+    <SpeedInsights />
 
-      {/* Services Section */}
-      <section className="section" id="services">
-        <h2>Our Services</h2>
-        <div className="cards-grid">
-          <div className="card">
-            <Image src="https://images.unsplash.com/photo-1506784897867-89166cc1e73e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Consulting" width={60} height={60} />
-            <h3>Ongoing Consultancy</h3>
-            <p>Continuous support, hourly rates, flexible scope.</p>
-            <ul>
-              <li>Roles: Product Owner, Project Manager, IT Architect</li>
-              <li>Price: From 1000 SEK / hour</li>
-            </ul>
-          </div>
-          <div className="card">
-            <Image src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Efficiency" width={60} height={60} />
-            <h3>Digital Efficiency</h3>
-            <p>Rapid analysis for waste reduction.</p>
-            <ul>
-              <li>Process mapping and recommendations</li>
-              <li>Price: From 125,000 SEK</li>
-            </ul>
-          </div>
-          <div className="card">
-            <Image src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Implementation" width={60} height={60} />
-            <h3>Implementation Projects</h3>
-            <p>Full projects from concept to roll-out.</p>
-            <ul>
-              <li>Development and continuous improvement</li>
-              <li>Price upon request</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+    {/* Header */}
+    <header className="sticky top-0 z-20 px-8 py-6 backdrop-blur bg-bruma-dark/80 border-b border-bruma-neutral/20">
+      <nav className="flex items-center justify-between">
 
-      {/* Framework Section */}
-      <section className="framework section" id="framework">
-        <h2>Digital Sales Framework</h2>
-        <p>Engage customers with personalized experiences, maximizing growth.</p>
-        <p>Enhance efficiency and sales with integrated digital efforts.</p>
-        <div className="framework-content">
-          <div className="framework-item">
-            <h3>Attract</h3>
-            <p>Draw in customers digitally.</p>
-          </div>
-          <div className="framework-item">
-            <h3>Customer Journey</h3>
-            <p>Streamline the sales process.</p>
-          </div>
-          <div className="framework-item">
-            <h3>Customer Success</h3>
-            <p>Ensure ongoing support.</p>
-          </div>
-        </div>
-      </section>
 
-      {/* Clients Section */}
-      <section className="section" id="clients">
-        <h2>Some of Our Clients</h2>
-        <div className="cards-grid">
-          <div className="card">
-            <Image src="https://images.unsplash.com/photo-1600585154962-6130dc73e26d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Remondis" width={60} height={60} />
-            <h3>REMONDIS SWEDEN AB</h3>
-            <ul>
-              <li>Product Owner</li>
-              <li>Business Analyst</li>
-              <li>Project Management</li>
-            </ul>
-          </div>
-          <div className="card">
-            <Image src="https://images.unsplash.com/photo-1600585154739-6a8e7f0c8e3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Polestar" width={60} height={60} />
-            <h3>POLESTAR</h3>
-            <ul>
-              <li>Business Analyst</li>
-              <li>Project Management</li>
-              <li>Digital Initiative Lead</li>
-            </ul>
-          </div>
-          <div className="card">
-            <Image src="https://images.unsplash.com/photo-1600585154204-1c2b9567f2f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Volvo" width={60} height={60} />
-            <h3>VOLVO CARS</h3>
-            <ul>
-              <li>Innovation Lead</li>
-              <li>Project Management</li>
-              <li>iOS</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      {/* Placeholder logo */}
+      <div className="text-2xl font-bold text-bruma"><a href="#">B</a></div>
 
-      {/* Team Section */}
-      <section className="section" id="team">
-        <h2>The Team</h2>
-        <div className="team-grid">
-          <div className="team-card">
-            <Image src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=180&q=80" alt="Fredrik" width={180} height={180} />
-            <h3>Fredrik Angin</h3>
-            <p>Managing Director</p>
-            <p>fredrik@yourdomain.com</p>
-            <a href="#">LinkedIn</a>
-          </div>
-          <div className="team-card">
-            <Image src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=180&q=80" alt="Helena" width={180} height={180} />
-            <h3>Helena Strahl</h3>
-            <p>Digital Management Consultant</p>
-            <p>helena@yourdomain.com</p>
-            <a href="#">LinkedIn</a>
-          </div>
-          <div className="team-card">
-            <Image src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=180&q=80" alt="Johan" width={180} height={180} />
-            <h3>Johan Eriksson</h3>
-            <p>Technology Management Consultant</p>
-            <p>johan@yourdomain.com</p>
-            <a href="#">LinkedIn</a>
-          </div>
-          {/* Add remaining team members */}
-        </div>
-      </section>
+      {/* Hamburger button */}
+      <button className="md:hidden z-30" onClick={() => setMenuOpen(true)}>
+      <span className="block w-6 h-0.5 bg-bruma mb-1"></span>
+      <span className="block w-6 h-0.5 bg-bruma mb-1"></span>
+      <span className="block w-6 h-0.5 bg-bruma"></span>
+      </button>
 
-      {/* Contact Section */}
-      <section className="contact section" id="contact">
-        <h2>Contact Us</h2>
-        <form style={{ maxWidth: '600px', margin: '0 auto' }} onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Name</label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name" />
+
+      {/* Desktop Menu */}
+      <ul className="hidden md:flex gap-6 text-sm text-bruma-neutral">
+      <li><a href="#services" className="hover:text-bruma">Services</a></li>
+      <li><a href="#works" className="hover:text-bruma">Works</a></li>
+      <li><a href="#about" className="hover:text-bruma">About</a></li>
+      <li><a href="#contact" className="hover:text-bruma">Contact</a></li>
+      </ul>
+      </nav>
+      </header>
+
+
+    {/* Mobile Menu Drawer */}
+    <AnimatePresence>
+      {menuOpen && (
+      <motion.div
+      key="mobile-menu"
+      initial={{ x: '100%' }}
+      animate={{ x: 0 }}
+      exit={{ x: '100%' }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      className="fixed inset-0 z-50 bg-bruma flex flex-col items-center justify-center gap-12"
+      >
+      <button
+      className="absolute top-6 right-6 text-3xl text-bruma-dark"
+      onClick={() => setMenuOpen(false)}
+      >
+      ×
+      </button>
+      <a href="#services" className="text-4xl font-bold text-bruma-dark hover:underline" onClick={() => setMenuOpen(false)}>Services</a>
+      <a href="#works" className="text-4xl font-bold text-bruma-dark hover:underline" onClick={() => setMenuOpen(false)}>Works</a>
+      <a href="#about" className="text-4xl font-bold text-bruma-dark hover:underline" onClick={() => setMenuOpen(false)}>About</a>
+      <a href="#contact" className="text-4xl font-bold text-bruma-dark hover:underline" onClick={() => setMenuOpen(false)}>Contact</a>
+      </motion.div>
+      )}
+    </AnimatePresence>
+
+    {/* Hero Section with Fading Gothenburg Background */}
+    <section
+      id="hero"
+      className="relative w-full h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden"
+      >
+      <div className="absolute inset-0 w-full h-full">
+        <img
+        src="https://images.unsplash.com/photo-1543747325-a058c441b776"
+        alt="Gothenburg cityscape"
+        className="w-full h-full object-cover"
+        style={{
+        maskImage: 'linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1))',
+        WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1))',
+        }}
+        />
+        <div className="absolute inset-0 bg-bruma-dark/40"></div>
+      </div>
+
+      {/* Centered text remains unchanged */}
+      <div className="relative z-10 text-center">
+      <motion.h1 initial={{ x: -60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.6 }} className="text-6xl md:text-7xl font-semibold tracking-widest">BRUMA</motion.h1>
+      <motion.h2 initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }} className="text-2xl mt-4">Digital Consultancy</motion.h2>
+      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }} className="mt-6 max-w-prose text-bruma-neutral">We help ambitious startups and enterprises design, build, and scale digital products that move markets and delight users.</motion.p>
+      <motion.a href="#contact" className="inline-block mt-8 px-5 py-2 border border-bruma-neutral/40 rounded-lg hover:bg-bruma/20" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>Work with us ↗</motion.a>
+      </div>
+    </section>
+
+      {/* Main content */}
+      <main className="w-full max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-20 space-y-32">
+        {/* Services Section */}
+        <section id="services">
+          <h3 className="tracking-[0.3em] text-bruma-neutral uppercase">Services /</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+            {services.map((s, i) => (
+              <motion.article key={i} whileHover={{ y: -4, boxShadow: '0 10px 25px rgba(212,175,55,0.3)' }} className="bg-bruma-dark/10 p-6 rounded-lg border border-bruma-neutral/20 hover:border-bruma hover:bg-bruma-dark/20 transition-colors duration-300">
+                <h4 className="font-semibold text-bruma">{s.title}</h4>
+                <p className="text-bruma-neutral mt-2 text-sm">{s.desc}</p>
+                <small className="text-bruma-neutral/70">{s.stack}</small>
+              </motion.article>
+            ))}
           </div>
-          <div className="form-group">
-            <label>Email</label>
-            <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your Email" />
+        </section>
+
+        {/* Works Section */}
+        <section id="works">
+          <h3 className="tracking-[0.3em] text-bruma-neutral uppercase">Selected Works /</h3>
+          <div className="grid md:grid-cols-2 gap-10 mt-10">
+            {projects.map((p, i) => (
+              <motion.a key={i} href={p.href} className="group block overflow-hidden rounded-lg border border-bruma-neutral/20 hover:border-bruma hover:shadow-[0_15px_30px_rgba(212,175,55,0.3)] transition-all duration-300">
+                <img src={p.img} alt={p.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="p-4 bg-bruma-dark/10">
+                  <h4 className="font-medium text-bruma">{p.title}</h4>
+                  <div className="text-sm text-bruma-neutral">{p.tag} • {p.year}</div>
+                </div>
+              </motion.a>
+            ))}
           </div>
-          <div className="form-group">
-            <label>Message</label>
-            <textarea rows={5} name="message" value={formData.message} onChange={handleChange} placeholder="Your Message"></textarea>
-          </div>
-          <button type="submit" className="btn">Send Message</button>
-          {status && <p>{status}</p>}
-        </form>
-      </section>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="max-w-prose">
+          <h3 className="tracking-[0.3em] text-bruma-neutral uppercase">About</h3>
+          <p className="mt-6 text-bruma-neutral">
+            At Bruma, we combine strategic thinking with hands-on design and engineering. We’ve helped early-stage startups validate products, and guided established companies to scale platforms serving millions.
+          </p>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact">
+          <h3 className="tracking-[0.3em] text-bruma-neutral uppercase">Say Hello</h3>
+          <form className="flex flex-col gap-4 mt-6 max-w-md" onSubmit={(e) => { e.preventDefault(); alert('Thanks — message sent (placeholder).'); }}>
+            <input placeholder="Name" required className="px-4 py-2 rounded-lg bg-transparent border border-bruma-neutral/20" />
+            <input placeholder="Email" type="email" required className="px-4 py-2 rounded-lg bg-transparent border border-bruma-neutral/20" />
+            <textarea placeholder="Message" rows={4} required className="px-4 py-2 rounded-lg bg-transparent border border-bruma-neutral/20" />
+            <button className="px-4 py-2 bg-bruma/20 rounded-lg hover:bg-bruma/30">Send Message</button>
+          </form>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="mt-auto px-8 py-6 border-t border-bruma-neutral/20 flex justify-between text-bruma-neutral text-sm">
+        <div>© {new Date().getFullYear()} Bruma Consultancy</div>
+        <div>LinkedIn · GitHub · Instagram</div>
+      </footer>
     </div>
   );
 }
