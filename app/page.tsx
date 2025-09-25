@@ -70,59 +70,45 @@ export default function Page() {
         )}
       </AnimatePresence>
 
-      <section
-        id="hero"
-        className="relative w-full h-screen flex items-center justify-start px-12 md:px-20 overflow-hidden"
-      >
-        <div className="absolute inset-0 w-full h-full">
-          <img
-            src="https://images.unsplash.com/photo-1543747325-a058c441b776"
-            alt="Gothenburg cityscape"
-            className="w-full h-full object-cover"
-            style={{
-              maskImage: 'linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1))',
-              WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1))',
-            }}
-          />
-          <div className="absolute inset-0 bg-bruma-dark/40"></div>
-        </div>
-
         {/* Hero section */}
-        <div className="relative z-10 text-left max-w-3xl">
-          <motion.h1
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="text-8xl md:text-[9rem] font-extrabold tracking-tight uppercase leading-[1.1] text-bruma"
+        <section
+          id="hero"
+          className="relative w-full overflow-hidden py-24 px-6 md:px-12 lg:px-20"
+        >
+          <motion.div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(to left, rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1543747325-a058c441b776')",
+              backgroundPosition: "right center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              opacity: 0.6,
+            }}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 0.6, x: 0 }}
+            transition={{ duration: 1.2 }}
+          ></motion.div>
+
+          <motion.div
+            className="relative max-w-4xl z-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Bruma
-          </motion.h1>
-          <motion.h2
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-3xl md:text-5xl font-light tracking-wide text-bruma-neutral mt-2"
-          >
-            Digital Consultancy
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.35 }}
-            className="mt-6 max-w-prose text-bruma-neutral"
-          >
-            We help ambitious startups and enterprises design, build, and scale digital products that move markets and delight users.
-          </motion.p>
-          <motion.a
-            href="#contact"
-            className="inline-block mt-8 px-6 py-3 border border-bruma-neutral/40 rounded-lg hover:bg-bruma/20"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Work with us ↗
-          </motion.a>
-        </div>
-      </section>
+            <h1 className="text-[5rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] font-bold text-bruma mb-6 leading-[1.1] sm:leading-[1.1] md:leading-[1]">
+              Bruma{" "}
+              <span className="block text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-light">
+                Consultancy
+              </span>
+            </h1>
+            <p className="text-bruma-neutral text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-prose">
+              We help businesses navigate the digital landscape, combining strategy, design,
+              and technology to deliver impactful solutions.
+            </p>
+          </motion.div>
+        </section>
+
 
       {/* Main content */}
       <main className="w-full max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-20 space-y-32">
