@@ -75,7 +75,6 @@ export default function Page() {
         id="hero"
         className="relative w-full overflow-hidden py-24 sm:py-28 px-4 sm:px-6 md:px-12 lg:px-20"
       >
-        {/* Animated background image */}
         <motion.div
           className="absolute inset-0"
           style={{
