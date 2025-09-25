@@ -8,26 +8,12 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { X } from "lucide-react";
 import { FaLinkedin, FaInstagram } from "react-icons/fa";
 import ContactForm from '@/components/ContactForm';
+import Projects from '@/components/Projects';
+import Services from '@/components/Services';
 
-
-const services = [
-  { title: 'Digital Strategy', desc: 'Guiding your team through discovery, roadmapping, and growth strategy.', stack: 'Workshops • Market Fit • Roadmaps' },
-  { title: 'Product Design', desc: 'Designing interfaces and experiences that connect with your users.', stack: 'UI/UX • Design Systems • Figma' },
-  { title: 'Engineering', desc: 'Building robust applications across web and mobile platforms.', stack: 'React • TypeScript • Node.js' },
-  { title: 'Scaling & Optimization', desc: 'Optimizing performance, infrastructure, and pipelines for growth.', stack: 'Cloud • DevOps • Observability' },
-];
-
-
-const projects = [
-  { title: 'Enterprise Web Strategy', tag: 'Digital Roadmap', year: 2025, href: '#', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d' },
-  { title: "Product Design Sprint", tag: "UX/UI Design", year: 2025, href: "#", img: 'https://images.unsplash.com/photo-1595142545813-06fee27f3dcb' },
-  { title: 'SaaS Engineering Platform', tag: 'Full-stack Build', year: 2025, href: '#', img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c' },
-  { title: 'Scaling Global Systems', tag: 'Cloud Architecture', year: 2025, href: '#', img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d' },
-];
 
 export default function Page() {
   const [menuOpen, setMenuOpen] = useState(false);
-
 
   return (
     <div className="flex flex-col min-h-screen bg-bruma-dark text-gray-200 relative">
@@ -51,7 +37,7 @@ export default function Page() {
           {/* Desktop Menu */}
           <ul className="hidden md:flex gap-6 text-sm text-bruma-neutral">
             <li><a href="#services" className="hover:text-bruma">Services</a></li>
-            <li><a href="#works" className="hover:text-bruma">Works</a></li>
+            <li><a href="#projects" className="hover:text-bruma">Projects</a></li>
             <li><a href="#about" className="hover:text-bruma">About</a></li>
             <li><a href="#contact" className="hover:text-bruma">Contact</a></li>
           </ul>
@@ -88,7 +74,6 @@ export default function Page() {
         id="hero"
         className="relative w-full h-screen flex items-center justify-start px-12 md:px-20 overflow-hidden"
       >
-        {/* Full-width background image with fade */}
         <div className="absolute inset-0 w-full h-full">
           <img
             src="https://images.unsplash.com/photo-1543747325-a058c441b776"
@@ -145,32 +130,17 @@ export default function Page() {
         {/* Services Section */}
         <section id="services">
           <h3 className="tracking-[0.3em] text-bruma-neutral uppercase">Services /</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
-            {services.map((s, i) => (
-              <motion.article key={i} whileHover={{ y: -4, boxShadow: '0 10px 25px rgba(212,175,55,0.3)' }} className="bg-bruma-dark/10 p-6 rounded-lg border border-bruma-neutral/20 hover:border-bruma hover:bg-bruma-dark/20 transition-colors duration-300">
-                <h4 className="font-semibold text-bruma">{s.title}</h4>
-                <p className="text-bruma-neutral mt-2 text-sm">{s.desc}</p>
-                <small className="text-bruma-neutral/70">{s.stack}</small>
-              </motion.article>
-            ))}
-          </div>
+          <Services />
         </section>
 
-        {/* Works Section */}
-        <section id="works">
-          <h3 className="tracking-[0.3em] text-bruma-neutral uppercase">Selected Works /</h3>
-          <div className="grid md:grid-cols-2 gap-10 mt-10">
-            {projects.map((p, i) => (
-              <motion.a key={i} href={p.href} className="group block overflow-hidden rounded-lg border border-bruma-neutral/20 hover:border-bruma hover:shadow-[0_15px_30px_rgba(212,175,55,0.3)] transition-all duration-300">
-                <img src={p.img} alt={p.title} className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="p-4 bg-bruma-dark/10">
-                  <h4 className="font-medium text-bruma">{p.title}</h4>
-                  <div className="text-sm text-bruma-neutral">{p.tag} • {p.year}</div>
-                </div>
-              </motion.a>
-            ))}
-          </div>
+        {/* Projects Section */}
+        <section id="projects" className="py-20">
+          <h3 className="text-3xl font-bold text-bruma mb-12 text-center">
+            Selected Projects
+          </h3>
+          <Projects />
         </section>
+
 
         {/* About Section */}
         <section id="about" className="max-w-prose">
@@ -186,8 +156,6 @@ export default function Page() {
           <p className="text-bruma-neutral mb-8">
             Let’s talk about your project. Fill out the form or connect with us directly:
           </p>
-
-          {/* Contact Form */}
           <ContactForm />
 
           {/* Social Links */}
