@@ -73,8 +73,9 @@ export default function Page() {
       {/* Hero section */}
       <section
         id="hero"
-        className="relative w-full overflow-hidden py-24 sm:py-28 px-4 sm:px-6 md:px-12 lg:px-20"
+        className="relative w-full overflow-hidden min-h-screen py-24 sm:py-28 px-4 sm:px-6 md:px-12 lg:px-20"
       >
+        {/* Animated background image */}
         <motion.div
           className="absolute inset-0"
           style={{
@@ -91,7 +92,7 @@ export default function Page() {
         ></motion.div>
 
         <motion.div
-          className="relative max-w-4xl z-10"
+          className="relative max-w-4xl z-10 flex flex-col items-start"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -102,10 +103,18 @@ export default function Page() {
               Consultancy
             </span>
           </h1>
-          <p className="text-bruma-neutral text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-prose">
+          <p className="text-bruma-neutral text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-prose mb-8">
             We help businesses navigate the digital landscape, combining strategy, design,
             and technology to deliver impactful solutions.
           </p>
+
+          {/* Work with us button with arrow, left-aligned on desktop, centered on mobile */}
+          <a
+            href="#contact"
+            className="inline-flex items-center px-6 py-3 text-bruma font-medium border border-bruma rounded-lg hover:bg-bruma hover:text-bruma-dark transition self-center sm:self-center md:self-start"
+          >
+            Work with us <span className="ml-2 text-bruma-dark">→</span>
+          </a>
         </motion.div>
       </section>
 
