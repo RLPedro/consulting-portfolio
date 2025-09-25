@@ -70,44 +70,45 @@ export default function Page() {
         )}
       </AnimatePresence>
 
-        {/* Hero section */}
-        <section
-          id="hero"
-          className="relative w-full overflow-hidden py-24 px-6 md:px-12 lg:px-20"
-        >
-          <motion.div
-            className="absolute inset-0"
-            style={{
-              backgroundImage:
-                "linear-gradient(to left, rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1543747325-a058c441b776')",
-              backgroundPosition: "right center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              opacity: 0.6,
-            }}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 0.6, x: 0 }}
-            transition={{ duration: 1.2 }}
-          ></motion.div>
+      {/* Hero section */}
+      <section
+        id="hero"
+        className="relative w-full overflow-hidden py-24 sm:py-28 px-4 sm:px-6 md:px-12 lg:px-20"
+      >
+        {/* Animated background image */}
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(to left, rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1543747325-a058c441b776')",
+            backgroundPosition: "right center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            opacity: 0.6,
+          }}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 0.6, x: 0 }}
+          transition={{ duration: 1.2 }}
+        ></motion.div>
 
-          <motion.div
-            className="relative max-w-4xl z-10"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <h1 className="text-[5rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] font-bold text-bruma mb-6 leading-[1.1] sm:leading-[1.1] md:leading-[1]">
-              Bruma{" "}
-              <span className="block text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-light">
-                Consultancy
-              </span>
-            </h1>
-            <p className="text-bruma-neutral text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-prose">
-              We help businesses navigate the digital landscape, combining strategy, design,
-              and technology to deliver impactful solutions.
-            </p>
-          </motion.div>
-        </section>
+        <motion.div
+          className="relative max-w-4xl z-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <h1 className="text-[5rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] font-bold text-bruma mb-6 leading-[1.1] md:leading-[1]">
+            Bruma{" "}
+            <span className="block text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] font-light">
+              Consultancy
+            </span>
+          </h1>
+          <p className="text-bruma-neutral text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-prose">
+            We help businesses navigate the digital landscape, combining strategy, design,
+            and technology to deliver impactful solutions.
+          </p>
+        </motion.div>
+      </section>
 
 
       {/* Main content */}
