@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import ContactForm from '@/components/ContactForm';
 
 
 const services = [
@@ -21,7 +22,7 @@ const services = [
 
 const projects = [
 { title: 'Enterprise Web Strategy', tag: 'Digital Roadmap', year: 2025, href: '#', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d' },
-{ title: 'Product Design Sprint', tag: 'UX/UI Design', year: 2025, href: '#', img: 'https://images.unsplash.com/photo-1595142545813-06fee27f3dcb' },
+{ title: "Product Design Sprint", tag: "UX/UI Design", year: 2025, href: "#", img: 'https://images.unsplash.com/photo-1595142545813-06fee27f3dcb' },
 { title: 'SaaS Engineering Platform', tag: 'Full-stack Build', year: 2025, href: '#', img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c' },
 { title: 'Scaling Global Systems', tag: 'Cloud Architecture', year: 2025, href: '#', img: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d' },
 ];
@@ -87,30 +88,58 @@ return (
       )}
     </AnimatePresence>
 
-    {/* Hero Section with Fading Gothenburg Background */}
     <section
       id="hero"
-      className="relative w-full h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden"
-      >
+      className="relative w-full h-screen flex items-center justify-start px-12 md:px-20 overflow-hidden"
+    >
+      {/* Full-width background image with fade */}
       <div className="absolute inset-0 w-full h-full">
         <img
-        src="https://images.unsplash.com/photo-1543747325-a058c441b776"
-        alt="Gothenburg cityscape"
-        className="w-full h-full object-cover"
-        style={{
-        maskImage: 'linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1))',
-        WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1))',
-        }}
+          src="https://images.unsplash.com/photo-1543747325-a058c441b776"
+          alt="Gothenburg cityscape"
+          className="w-full h-full object-cover"
+          style={{
+            maskImage: 'linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1))',
+            WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1))',
+          }}
         />
         <div className="absolute inset-0 bg-bruma-dark/40"></div>
       </div>
 
-      {/* Centered text remains unchanged */}
-      <div className="relative z-10 text-center">
-      <motion.h1 initial={{ x: -60, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.6 }} className="text-6xl md:text-7xl font-semibold tracking-widest">BRUMA</motion.h1>
-      <motion.h2 initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2 }} className="text-2xl mt-4">Digital Consultancy</motion.h2>
-      <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }} className="mt-6 max-w-prose text-bruma-neutral">We help ambitious startups and enterprises design, build, and scale digital products that move markets and delight users.</motion.p>
-      <motion.a href="#contact" className="inline-block mt-8 px-5 py-2 border border-bruma-neutral/40 rounded-lg hover:bg-bruma/20" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>Work with us ↗</motion.a>
+      {/* Hero section */}
+      <div className="relative z-10 text-left max-w-3xl">
+        <motion.h1
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="text-8xl md:text-[9rem] font-extrabold tracking-tight uppercase leading-[1.1] text-bruma"
+        >
+          Bruma
+        </motion.h1>
+        <motion.h2
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-3xl md:text-5xl font-light tracking-wide text-bruma-neutral mt-2"
+        >
+          Digital Consultancy
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.35 }}
+          className="mt-6 max-w-prose text-bruma-neutral"
+        >
+          We help ambitious startups and enterprises design, build, and scale digital products that move markets and delight users.
+        </motion.p>
+        <motion.a
+          href="#contact"
+          className="inline-block mt-8 px-6 py-3 border border-bruma-neutral/40 rounded-lg hover:bg-bruma/20"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Work with us ↗
+        </motion.a>
       </div>
     </section>
 
@@ -155,15 +184,11 @@ return (
         </section>
 
         {/* Contact Section */}
-        <section id="contact">
-          <h3 className="tracking-[0.3em] text-bruma-neutral uppercase">Say Hello</h3>
-          <form className="flex flex-col gap-4 mt-6 max-w-md" onSubmit={(e) => { e.preventDefault(); alert('Thanks — message sent (placeholder).'); }}>
-            <input placeholder="Name" required className="px-4 py-2 rounded-lg bg-transparent border border-bruma-neutral/20" />
-            <input placeholder="Email" type="email" required className="px-4 py-2 rounded-lg bg-transparent border border-bruma-neutral/20" />
-            <textarea placeholder="Message" rows={4} required className="px-4 py-2 rounded-lg bg-transparent border border-bruma-neutral/20" />
-            <button className="px-4 py-2 bg-bruma/20 rounded-lg hover:bg-bruma/30">Send Message</button>
-          </form>
-        </section>
+      <section id="contact" className="py-20">
+        <h3 className="text-3xl font-bold text-bruma mb-6">Contact Us</h3>
+        <ContactForm />
+      </section>
+
       </main>
 
       {/* Footer */}
