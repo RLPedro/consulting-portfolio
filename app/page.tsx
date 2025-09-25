@@ -63,7 +63,7 @@ export default function Page() {
             ×
           </button>
           <a href="#services" className="text-4xl font-bold text-bruma-dark hover:underline" onClick={() => setMenuOpen(false)}>Services</a>
-          <a href="#works" className="text-4xl font-bold text-bruma-dark hover:underline" onClick={() => setMenuOpen(false)}>Works</a>
+          <a href="#projects" className="text-4xl font-bold text-bruma-dark hover:underline" onClick={() => setMenuOpen(false)}>Projects</a>
           <a href="#about" className="text-4xl font-bold text-bruma-dark hover:underline" onClick={() => setMenuOpen(false)}>About</a>
           <a href="#contact" className="text-4xl font-bold text-bruma-dark hover:underline" onClick={() => setMenuOpen(false)}>Contact</a>
         </motion.div>
