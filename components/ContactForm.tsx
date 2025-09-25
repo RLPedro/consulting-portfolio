@@ -14,10 +14,10 @@ export default function ContactForm() {
 
     emailjs
       .sendForm(
-        "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
-        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
         formRef.current,
-        "YOUR_PUBLIC_KEY" // Replace with your EmailJS public key
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
       )
       .then(
         (result) => {
