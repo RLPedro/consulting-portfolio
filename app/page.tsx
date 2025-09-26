@@ -108,13 +108,13 @@ export default function Page() {
             and technology to deliver impactful solutions.
           </p>
 
-          {/* Work with us button with arrow, left-aligned on desktop, centered on mobile */}
           <a
             href="#contact"
             className="inline-flex items-center px-6 py-3 text-bruma font-medium border border-bruma rounded-lg hover:bg-bruma hover:text-bruma-dark transition self-center sm:self-center md:self-start"
           >
-            Work with us <span className="ml-2 text-bruma-dark">→</span>
+            Work with us <span className="ml-2">→</span>
           </a>
+
         </motion.div>
       </section>
 

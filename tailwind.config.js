@@ -14,9 +14,9 @@ module.exports = {
       extend: {
         colors: {
           bruma: {
-            DEFAULT: '#d4af37', // gold accent
-            dark: '#0c0a09', // deep dark background
-            neutral: '#bfa66a', // muted gold/gray
+            DEFAULT: '#d4af37',
+            dark: '#0c0a09',
+            neutral: '#bfa66a',
           },
       },
     },

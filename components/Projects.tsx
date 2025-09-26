@@ -23,7 +23,7 @@ export default function Projects() {
             <h4 className="text-xl font-semibold text-white">{project.title}</h4>
             <p className="mt-2 text-sm text-bruma-neutral flex-grow">{project.desc}</p>
             <span className="mt-3 block text-sm text-bruma">{project.stack}</span>
-            
+
             <a
               href={`/projects/${project.slug}`}
               className="mt-4 inline-block px-4 py-2 text-sm font-medium border border-bruma text-bruma rounded hover:bg-bruma hover:text-bruma-dark transition self-start"
